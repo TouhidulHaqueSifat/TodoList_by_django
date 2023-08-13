@@ -1,0 +1,43 @@
+{%extends 'base.html'%}
+{% block content%}
+{%if form%}
+<h1 style= "background-color: blue; color: aliceblue; width: 30%; margin: auto; text-align: center; padding-bottom: 5px;">Tasks</h1>
+<table class="table" style="width: 50%; margin: auto;">
+    
+    <thead>
+        <tr>
+             <!-- <th scope="col">#</th> -->
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for item in form%}
+        <tr>
+            <!-- <th scope="row">1</th> -->
+            <td>{{item.task_title}}</td>
+            <td>{{item.task_description}}</td>
+            <td>
+                {%if item.completed == False%}
+
+                Incomplete
+
+                {%else%}
+
+                completed
+
+                {%endif%}
+            </td>
+            <td><a href="{% url 'edit' id=item.id %}" class="btn btn-danger btn-sm">Edit</a> <a href="{% url 'delete' id=item.id %}" class="btn btn-warning btn-sm">Delete</a><a href="{% url 'complete' id=item.id %}" class="btn btn-danger btn-sm ">Complete</a></td>      
+        </tr>
+        {%endfor%}
+
+    </tbody>
+</table>
+{%else%}
+<h1 style="width:50%;margin: auto;">No Item Found</h1>
+{%endif%}
+
+{% endblock %}

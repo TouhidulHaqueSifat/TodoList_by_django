@@ -1,0 +1,14 @@
+{%extends 'base.html'%}
+{% load crispy_forms_tags %} 
+{% block title%} Store Book {%endblock%}
+{% block content%}
+<h1 style= "background-color: blue; color: aliceblue; width: 30%; margin: auto; text-align: center; padding-bottom: 5px;">Tasks</h1>
+<div style="width: 50%; margin: auto;">
+    <form method="post">
+        {% csrf_token%}
+        {{form | crispy}}
+        <button class="btn btn-info" type="submit">Submit</button>
+    </form>
+</div>
+
+{%endblock%}
